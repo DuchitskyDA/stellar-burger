@@ -5,7 +5,7 @@ import {
   PayloadAction
 } from '@reduxjs/toolkit';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 
 type TBurgerConstructorSlice = {
   constructorBun: TConstructorIngredient | null;
@@ -30,6 +30,7 @@ const burgerConstructorSlice = createSlice({
         action.payload.type === 'bun'
           ? (state.constructorBun = action.payload)
           : state.constructorIngredients.push(action.payload);
+        console.log(action.payload._id);
       }
     },
 
@@ -37,7 +38,6 @@ const burgerConstructorSlice = createSlice({
       state.constructorIngredients = state.constructorIngredients.filter(
         (item) => item.id !== action.payload
       );
-      // console.log(typeof action.payload.id);
     },
     upPositionOfIngredient: (state, action: PayloadAction<string>) => {
       const ingredientIndex = state.constructorIngredients.findIndex(

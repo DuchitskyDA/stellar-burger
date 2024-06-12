@@ -4,7 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import {
   getIsAuthLoading,
   getUserAuthStatus
-} from '../../services/slices/userSlice';
+} from '../../services/slices/user/userSlice';
 import { Preloader } from '@ui';
 
 type ProtectedRouteProps = {

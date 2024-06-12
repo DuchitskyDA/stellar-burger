@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent, useState } from 'react';
 import { RegisterUI } from '@ui-pages';
 import { useDispatch } from '../../services/store';
-import { registerUser } from '../../services/slices/userSlice';
+import { registerUser } from '../../services/slices/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 export const Register: FC = () => {
@@ -14,7 +14,6 @@ export const Register: FC = () => {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     const userData = { email, name, password };
-    console.log(JSON.stringify(userData));
     dispatch(registerUser(userData)).then(() => navigate('/login'));
   };
 
