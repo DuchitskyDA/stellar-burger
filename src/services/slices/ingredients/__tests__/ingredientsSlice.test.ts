@@ -2,18 +2,12 @@ import { describe, test } from '@jest/globals';
 import {
   getIngredients,
   ingredientsSliceReducer,
-  TIngredientsSlice
+  initialState
 } from '../ingredientsSlice';
 import { ingredients } from '../mockIngredientsData';
 
 describe('тест асинхронных экшенов', () => {
   const expectedResult = ingredients;
-
-  const initialState: TIngredientsSlice = {
-    ingredients: [],
-    loadingData: true,
-    error: null
-  };
 
   test('тест загрузки ингредиентов', async () => {
     const state = ingredientsSliceReducer(

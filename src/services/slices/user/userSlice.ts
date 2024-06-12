@@ -17,7 +17,7 @@ import {
 import { RootState } from '../../store';
 import { TOrder } from '@utils-types';
 
-const initialState: Pick<TAuthResponse, 'user' | 'success'> & {
+export const initialState: Pick<TAuthResponse, 'user' | 'success'> & {
   orders: TOrder[];
   lastOrder: TOrder | null;
   orderRequestData: boolean;

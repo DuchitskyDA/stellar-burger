@@ -2,7 +2,8 @@ import { describe, test } from '@jest/globals';
 import {
   feedsSliceReducer,
   getAllFeeds,
-  getOrderByNumber
+  getOrderByNumber,
+  initialState
 } from '../feedsSlice';
 import { mockFeedsData } from '../mockFeedsData';
 
@@ -24,16 +25,6 @@ const expectedResultById = {
       number: 42042
     }
   ]
-};
-
-const initialState = {
-  orders: [],
-  total: 0,
-  totalToday: 0,
-  loadingData: true,
-  error: null,
-  orderByNumber: null,
-  success: false
 };
 
 describe('тест экшенов feedsSlice', () => {

@@ -21,7 +21,7 @@ export type TFeedsSlice = {
   success: boolean;
 };
 
-const initialState: TFeedsSlice = {
+export const initialState: TFeedsSlice = {
   orders: [],
   total: 0,
   totalToday: 0,

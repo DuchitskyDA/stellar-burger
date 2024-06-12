@@ -12,7 +12,7 @@ type TBurgerConstructorSlice = {
   constructorIngredients: TConstructorIngredient[];
 };
 
-const initialState: TBurgerConstructorSlice = {
+export const initialState: TBurgerConstructorSlice = {
   constructorBun: null,
   constructorIngredients: []
 };

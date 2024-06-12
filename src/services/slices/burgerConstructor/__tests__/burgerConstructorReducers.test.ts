@@ -2,6 +2,7 @@ import {
   addIngredientToConstructor,
   burgerConstructorSliceReducer,
   downPositionOfIngredient,
+  initialState,
   removeIngredientFromConstructor,
   upPositionOfIngredient
 } from '../burgerConstructorSlice';
@@ -35,10 +36,6 @@ const customIngredient = {
   image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png'
 };
 describe('Тесты экшенов конструктора бургера', () => {
-  const initialState = {
-    constructorBun: null,
-    constructorIngredients: []
-  };
   describe('Добавление продукта', () => {
     test('Добавление в список булок', () => {
       const newState = burgerConstructorSliceReducer(
@@ -50,30 +47,13 @@ describe('Тесты экшенов конструктора бургера', ()
       expect(constructorBun).toEqual(customBun);
     });
     test('Добавление в список ингредиентов', () => {
-      const expectedResult = [
-        {
-          id: 'IR1R_ZJA-zRpoebahtv-K',
-          _id: '643d69a5c3f7b9001cfa0941',
-          name: 'Биокотлета из марсианской Магнолии',
-          type: 'main',
-          proteins: 420,
-          fat: 142,
-          carbohydrates: 242,
-          calories: 4242,
-          price: 424,
-          image: 'https://code.s3.yandex.net/react/code/meat-01.png',
-          image_mobile:
-            'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
-          image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png'
-        }
-      ];
       const newState = burgerConstructorSliceReducer(
         initialState,
         addIngredientToConstructor(customIngredient)
       );
       const { constructorIngredients } = newState;
 
-      expect(constructorIngredients).toEqual(expectedResult);
+      expect(constructorIngredients).toEqual([customIngredient]);
     });
   });
 
@@ -157,21 +137,7 @@ describe('Тесты экшенов конструктора бургера', ()
             'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
           image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png'
         },
-        {
-          id: 'IR1R_ZJA-zRpoebahtv-K',
-          _id: '643d69a5c3f7b9001cfa0941',
-          name: 'Биокотлета из марсианской Магнолии',
-          type: 'main',
-          proteins: 420,
-          fat: 142,
-          carbohydrates: 242,
-          calories: 4242,
-          price: 424,
-          image: 'https://code.s3.yandex.net/react/code/meat-01.png',
-          image_mobile:
-            'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
-          image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png'
-        }
+        customIngredient
       ];
       const newState = burgerConstructorSliceReducer(
         initialState,
@@ -197,25 +163,11 @@ describe('Тесты экшенов конструктора бургера', ()
             'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
           image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png'
         },
-        {
-          id: 'IR1R_ZJA-zRpoebahtv-K',
-          _id: '643d69a5c3f7b9001cfa0941',
-          name: 'Биокотлета из марсианской Магнолии',
-          type: 'main',
-          proteins: 420,
-          fat: 142,
-          carbohydrates: 242,
-          calories: 4242,
-          price: 424,
-          image: 'https://code.s3.yandex.net/react/code/meat-01.png',
-          image_mobile:
-            'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
-          image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png'
-        }
+        customIngredient
       ];
       const newState = burgerConstructorSliceReducer(
         initialState,
-        downPositionOfIngredient('IR1R_ZJA-zRpoebahtv-K')
+        downPositionOfIngredient(customIngredient._id)
       );
       const { constructorIngredients } = newState;
       expect(constructorIngredients).toEqual(expectedResult);

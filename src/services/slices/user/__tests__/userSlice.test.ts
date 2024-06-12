@@ -2,6 +2,7 @@ import { describe, test } from '@jest/globals';
 import {
   getUserAuth,
   getUserOrders,
+  initialState,
   loginUser,
   makeLoginUserSuccess,
   newUserOrder,
@@ -11,27 +12,8 @@ import {
   userLogout,
   userSliceReducer
 } from '../userSlice';
-import { TAuthResponse } from '@api';
-import { TOrder } from '@utils-types';
 
 describe('тесты экшенов userSlice', () => {
-  const initialState: Pick<TAuthResponse, 'user' | 'success'> & {
-    orders: TOrder[];
-    lastOrder: TOrder | null;
-    orderRequestData: boolean;
-    loading: boolean;
-  } = {
-    success: false,
-    user: {
-      email: '',
-      name: ''
-    },
-    orders: [],
-    lastOrder: null,
-    orderRequestData: false,
-    loading: false
-  };
-
   const expectedResult = {
     success: true,
     accessToken: '',
