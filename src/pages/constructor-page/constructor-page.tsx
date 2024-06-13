@@ -5,7 +5,7 @@ import styles from './constructor-page.module.css';
 import { BurgerConstructor, BurgerIngredients } from '../../components';
 import { Preloader } from '../../components/ui';
 import { FC } from 'react';
-import { getIsLoading } from '../../services/slices/ingredientsSlice';
+import { getIsLoading } from '../../services/slices/ingredients/ingredientsSlice';
 
 export const ConstructorPage: FC = () => {
   /** TODO: взять переменную из стора */

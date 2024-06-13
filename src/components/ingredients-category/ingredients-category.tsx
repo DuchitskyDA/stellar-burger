@@ -6,16 +6,15 @@ import { useSelector } from '../../services/store';
 import {
   getConstructorBun,
   getConstructorIngredients
-} from '../../services/slices/burgerConstructorSlice';
+} from '../../services/slices/burgerConstructor/burgerConstructorSlice';
 
 export const IngredientsCategory = forwardRef<
   HTMLUListElement,
   TIngredientsCategoryProps
->(({ title, titleRef, ingredients }, ref) => {
+>(({ title, titleRef, ingredients, ...rest }, ref) => {
   // Переменные из стора burgerConstructorSlice
   const constructorIngredients = useSelector(getConstructorIngredients);
   const constructorBun = useSelector(getConstructorBun);
-
   const burgerConstructor = {
     bun: constructorBun,
     ingredients: constructorIngredients
@@ -39,6 +38,7 @@ export const IngredientsCategory = forwardRef<
       ingredients={ingredients}
       ingredientsCounters={ingredientsCounters}
       ref={ref}
+      {...rest}
     />
   );
 });

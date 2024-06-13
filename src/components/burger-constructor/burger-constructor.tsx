@@ -6,16 +6,16 @@ import {
   getConstructorBun,
   getConstructorIngredients,
   resetConstructor
-} from '../../services/slices/burgerConstructorSlice';
+} from '../../services/slices/burgerConstructor/burgerConstructorSlice';
 import {
   getLastOrder,
   getOrderRequestStatus,
   getUserAuthStatus,
   newUserOrder,
   setLastOrder
-} from '../../services/slices/userSlice';
+} from '../../services/slices/user/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { getAllFeeds } from '../../services/slices/feedsSlice';
+import { getAllFeeds } from '../../services/slices/feeds/feedsSlice';
 
 export const BurgerConstructor: FC = () => {
   const navigate = useNavigate();

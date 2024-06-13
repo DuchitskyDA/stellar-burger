@@ -13,20 +13,17 @@ import {
   TAuthResponse,
   TRegisterData,
   updateUserApi
-} from '@api';
-import { RootState } from '../store';
-import { deleteCookie, setCookie } from '../../utils/cookie';
+} from '../../../utils/burger-api';
+import { RootState } from '../../store';
 import { TOrder } from '@utils-types';
 
-const initialState: TAuthResponse & {
+export const initialState: Pick<TAuthResponse, 'user' | 'success'> & {
   orders: TOrder[];
   lastOrder: TOrder | null;
   orderRequestData: boolean;
   loading: boolean;
 } = {
   success: false,
-  refreshToken: '',
-  accessToken: '',
   user: {
     email: '',
     name: ''
@@ -98,6 +95,7 @@ export const userSlice = createSlice({
         state.success = action.payload.success;
         state.user = action.payload.user;
       })
+
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -110,11 +108,8 @@ export const userSlice = createSlice({
         state.loading = false;
         state.success = action.payload.success;
         state.user = action.payload.user;
-        state.refreshToken = action.payload.refreshToken;
-        state.accessToken = action.payload.accessToken;
-        localStorage.setItem('refreshToken', state.refreshToken);
-        setCookie('accessToken', state.accessToken);
       })
+
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -128,6 +123,7 @@ export const userSlice = createSlice({
         state.success = action.payload.success;
         state.user = action.payload.user;
       })
+
       .addCase(updateUserData.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -141,6 +137,7 @@ export const userSlice = createSlice({
         state.success = action.payload.success;
         state.user = action.payload.user;
       })
+
       .addCase(userLogout.pending, (state) => {
         state.loading = true;
         state.success = false;
@@ -153,9 +150,8 @@ export const userSlice = createSlice({
         state.loading = false;
         state.success = false;
         state.user = initialState.user;
-        deleteCookie('accessToken');
-        localStorage.removeItem('refreshToken');
       })
+
       .addCase(getUserOrders.pending, (state) => {
         state.loading = true;
       })
@@ -166,6 +162,7 @@ export const userSlice = createSlice({
         state.loading = false;
         state.orders = action.payload;
       })
+
       .addCase(newUserOrder.pending, (state) => {
         state.loading = true;
         state.orderRequestData = true;
@@ -173,7 +170,6 @@ export const userSlice = createSlice({
       .addCase(newUserOrder.rejected, (state, action) => {
         state.loading = false;
         state.orderRequestData = false;
-        console.log(action.error);
       })
       .addCase(newUserOrder.fulfilled, (state, action) => {
         state.loading = false;

@@ -5,9 +5,9 @@ import {
   getOrderByNumber,
   getOrderByNumberSelector,
   isSearchSuccessSelector
-} from '../../services/slices/feedsSlice';
+} from '../../services/slices/feeds/feedsSlice';
 import { useDispatch, useSelector } from '../../services/store';
-import { getIngredientsData } from '../../services/slices/ingredientsSlice';
+import { getIngredientsData } from '../../services/slices/ingredients/ingredientsSlice';
 import { OrderInfoUI, Preloader } from '@ui';
 
 export const OrderInfo: FC = () => {

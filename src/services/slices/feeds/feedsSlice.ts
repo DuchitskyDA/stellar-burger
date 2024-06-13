@@ -4,25 +4,31 @@ import {
   createSelector,
   createSlice
 } from '@reduxjs/toolkit';
-import { getFeedsApi, getOrderByNumberApi, TOrderResponse } from '@api';
-import { RootState } from '../store';
+import {
+  getFeedsApi,
+  getOrderByNumberApi,
+  TOrderResponse
+} from '../../../utils/burger-api';
+import { RootState } from '../../store';
 
-type TFeedsSlice = {
+export type TFeedsSlice = {
   orders: TOrder[];
   total: number;
   totalToday: number;
   loadingData: boolean;
   error: string | null | undefined;
   orderByNumber: TOrderResponse | null;
+  success: boolean;
 };
 
-const initialState: TFeedsSlice = {
+export const initialState: TFeedsSlice = {
   orders: [],
   total: 0,
   totalToday: 0,
   loadingData: true,
   error: null,
-  orderByNumber: null
+  orderByNumber: null,
+  success: false
 };
 
 export const getAllFeeds = createAsyncThunk('feeds/getAll', async () =>

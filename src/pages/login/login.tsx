@@ -4,8 +4,9 @@ import { useDispatch } from '../../services/store';
 import {
   loginUser,
   makeLoginUserSuccess
-} from '../../services/slices/userSlice';
+} from '../../services/slices/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { setCookie } from '../../utils/cookie';
 
 export const Login: FC = () => {
   const navigate = useNavigate();
@@ -15,6 +16,15 @@ export const Login: FC = () => {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }))
+      .unwrap()
+      .then((data) => {
+        try {
+          localStorage.setItem('refreshToken', data.refreshToken);
+          setCookie('accessToken', data.accessToken);
+        } catch (err) {
+          return new Error('error');
+        }
+      })
       .then(() => dispatch(makeLoginUserSuccess(true)))
       .then(() => navigate('/'));
   };
